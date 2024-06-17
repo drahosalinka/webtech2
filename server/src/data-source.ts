@@ -9,7 +9,7 @@ export const AppDataSource = new DataSource({
     host: "localhost",
     port: 3306,
     username: "root",
-    database: "autokolcsonzo",
+    database: "konyvtar",
     synchronize: true,
     logging: true,
     entities: [Customer, Vehicle, BorrowVehicle],
