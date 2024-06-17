@@ -5,7 +5,7 @@
             <th>Név</th>
             <th>Lakcím</th>
             <th>Telefonszám</th>
-            <th>Személyi ig. szám</th>
+            <th>Könyvtári kártya száma</th>
             <th>Műveletek</th>
         </tr>
     </thead>
@@ -16,7 +16,7 @@
                 <td>{{ customer.name }}</td>
                 <td>{{ customer.address }}</td>
                 <td>{{ customer.phone }}</td>
-                <td>{{ customer.idCard }}</td>
+                <td>{{ customer.libraryCard }}</td>
                 <td>
                     <button class="btn btn-outline-primary"
                         (click)="goToCustomerForm(customer.id)">Módosítás</button>

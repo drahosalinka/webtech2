@@ -19,7 +19,7 @@ export class Customer {
     phone: string;
 
     @Column()
-    idCard: string;
+    libraryCard: string;
 
     @OneToMany(type => BorrowVehicle, borrow => borrow.customer)
     borrowedVehicles: BorrowVehicle[];

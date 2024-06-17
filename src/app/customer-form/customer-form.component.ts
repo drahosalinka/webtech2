@@ -26,7 +26,7 @@ export class CustomerFormComponent implements OnInit {
     name: '',
     address: '',
     phone: '',
-    idCard: ''
+    libraryCard: ''
   });
 
   isNewCustomer = true;

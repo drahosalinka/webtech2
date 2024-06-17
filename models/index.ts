@@ -6,7 +6,7 @@ export interface CustomerDTO {
     name: string;
     address: string;
     phone: string;
-    idCard: string;
+    libraryCard: string;
 }
 
 export interface VehicleDTO {
