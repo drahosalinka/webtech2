@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-md-6">
+        <form [formGroup]="vehicleForm">
+            <div class="mb-3">
+                <label for="vehicleId" class="form-label">Rendszám</label>
+                <input type="text" class="form-control" id="vehicleId" formControlName="vehicleId">
+            </div>
+            <div class="mb-3">
+                <label for="type" class="form-label">Típus</label>
+                <input type="text" class="form-control" id="type" formControlName="type">
+            </div>
+            <div class="mb-3">
+                <label for="manufacturer" class="form-label">Gyártó</label>
+                <input type="text" class="form-control" id="manufacturer" formControlName="manufacturer">
+            </div>
+            <div class="mb-3">
+                <label for="dateOfAquisition" class="form-label">Beszerzés dátuma</label>
+                <input type="text" class="form-control" id="dateOfAquisition" formControlName="dateOfAquisition">
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Bérletidíj</label>
+                <input type="text" class="form-control" id="price" formControlName="price">
+            </div>
+            <div class="mb-3">
+                <label for="km" class="form-label">Megtett kilóméter</label>
+                <input type="text" class="form-control" id="km" formControlName="km">
+            </div>
+            <div class="mb-3">
+                <label for="state" class="form-label">Státusz</label>
+                <select class="form-select" id="state" formControlName="state">
+                    <option value='szabad'>Szabad</option>
+                    <option value='kikölcsönözve'>Kikölcsönözve</option>
+                    <option value='selejtezett'>Selejtezve</option>
+                </select>
+            </div>
+        </form>
+        <div class="text-end">
+            <button class="btn btn-outline-primary" (click)="saveVehicle()">Mentés</button>
+        </div>
+    </div>
+</div>

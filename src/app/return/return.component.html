@@ -1,0 +1,30 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Kód</th>
+            <th>Kölcsönzés Ideje</th>
+            <th>Kölcsönző neve</th>
+            <th>Kölcsönzött jármű</th>
+            <th>Kölcsönzés időtartama</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(borrow of borrows; track $index) {
+            <tr>
+                <td>{{ borrow.id }}</td>
+                <td>{{ borrow.timestamp }}</td>
+                <td>{{ borrow.customer?.name }}</td>
+                <td>{{ borrow.vehicle?.vehicleId }}</td>
+                <td>{{ borrow.days }}</td>
+                <td>
+                    <button class="btn btn-outline-primary"
+                        (click)="goToBorrowForm(borrow.id)">Módosítás</button>
+                    <button class="btn btn-outline-danger"
+                        (click)="deleteBorrow(borrow)">Törlés</button>
+                    <button class="btn btn-outline-primary"
+                        (click)="openReturn(borrow)">Kölcsönzés Vége</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

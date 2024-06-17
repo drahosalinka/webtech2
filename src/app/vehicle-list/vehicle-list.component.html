@@ -1,0 +1,34 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Rendszám</th>
+            <th>Típus</th>
+            <th>Gyártó</th>
+            <th>Alvázszám</th>
+            <th>Beszerzés Dátuma</th>
+            <th>Bérletidíj</th>
+            <th>Futott kilóméter</th>
+            <th>Státusz</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(vehicle of vehicles; track $index) {
+            <tr>
+                <td>{{ vehicle.vehicleId }}</td>
+                <td>{{ vehicle.type }}</td>
+                <td>{{ vehicle.manufacturer }}</td>
+                <td>{{ vehicle.chassisNumber }}</td>
+                <td>{{ vehicle.dateOfAcquisition }}</td>
+                <td>{{ vehicle.price }}</td>
+                <td>{{ vehicle.km }}</td>
+                <td>{{ vehicle.state }}</td>
+                <td>
+                    <button class="btn btn-outline-primary"
+                        (click)="goToVehicleForm(vehicle.id)">Módosítás</button>
+                    <button class="btn btn-outline-danger"
+                        (click)="deleteVehicle(vehicle)">Törlés</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

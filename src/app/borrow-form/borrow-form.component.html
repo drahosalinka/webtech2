@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-md-6">
+        <form [formGroup]="borrowForm">
+            <div class="mb-3">
+                <label for="customer" class="form-label">Ügyfél</label>
+                <select class="form-select" id="customer" formControlName="customer">
+                    @for(customer of customers; track $index) {
+                        <option [ngValue]="{ id: customer.id }">{{ customer.name }} ({{ customer.customerId }})</option>
+                    }
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="vehicle" class="form-label">Jármű</label>
+                <select class="form-select" id="vehicle" formControlName="vehicle">
+                    @for(vehicle of getFreeVehicles(); track $index) {
+                        <option [ngValue]="{ id: vehicle.id }">{{ vehicle.type }} ({{ vehicle.vehicleId }})</option>
+                    }
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="days" class="form-label">Napok:</label>
+                <input type="number" min="1" class="form-control" id="days" formControlName="days">
+            </div>
+        </form>
+        <button class="btn btn-outline-primary" (click)="createBorrow()">Kölcsönzés</button>
+    </div>
+</div>
