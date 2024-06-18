@@ -1,9 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { BorrowService } from '../services/borrow.service';
-import { BorrowVehicleDTO, VehicleDTO } from '../../../models';
+import { BorrowBookDTO, BookDTO } from '../../../models';
 import { Router } from '@angular/router';
 import { Status } from '../../../server/status.enum';
-import { VehicleService } from '../services/vehicle.service';
+import {BookService } from '../services/book.service';
 
 @Component({
   selector: 'app-return',
@@ -14,12 +14,12 @@ import { VehicleService } from '../services/vehicle.service';
 })
 export class ReturnComponent implements OnInit {
   borrowService = inject(BorrowService);
-  vehicleService = inject(VehicleService);
+  bookService = inject(BookService);
 
 
   router = inject(Router);
 
-  borrows: BorrowVehicleDTO[] = [];
+  borrows: BorrowBookDTO[] = [];
   
   ngOnInit(): void {
     this.borrowService.getAll().subscribe({
@@ -32,7 +32,7 @@ export class ReturnComponent implements OnInit {
     this.router.navigate([ '/borrow', id ]);
   }
 
-  deleteBorrow(borrow: BorrowVehicleDTO) {
+  deleteBorrow(borrow: BorrowBookDTO) {
     this.borrowService.delete(borrow.id).subscribe({
       next: () => {
         const index = this.borrows.indexOf(borrow);
@@ -47,29 +47,20 @@ export class ReturnComponent implements OnInit {
     });
   }
 
- openReturn(borrow: BorrowVehicleDTO) {
+ openReturn(borrow: BorrowBookDTO) {
     // Megjeleníthetünk egy felugró ablakot itt
-    const isDamaged = confirm('A jármű sérült?');
-    const userInput = prompt('Futott kilóméter:');
-    const priceOfRent: number = borrow.vehicle?.price as number;
-
-    if (userInput !== null) {
-      const kms = parseFloat(userInput);
-
-    // Kalkuláció
-    const price = isDamaged ? ((borrow.days * priceOfRent + kms * 200) + 20000) : (borrow.days * priceOfRent + kms * 200);
+    const isDamaged = confirm('A könyv sérült?');
+    const price = isDamaged ? (5000) : (0);
 
     // Az eredmény megjelenítése (csak példa)
     alert(`Fizetendő: ${price}`);
 
-    const vehicle = borrow.vehicle as VehicleDTO;
+    const book = borrow.book as BookDTO;
     if (isDamaged) {
-      vehicle.state = Status.Scrapped;
+      book.state = Status.Scrapped;
     } else {
-      vehicle.state = Status.Free;
+      book.state = Status.Free;
     }
-
-    vehicle.km = vehicle.km + kms;
 
     this.borrowService.delete(borrow.id).subscribe({
       next: () => {
@@ -79,7 +70,6 @@ export class ReturnComponent implements OnInit {
       } 
     }
     });
-    this.vehicleService.update(vehicle).subscribe(vehicle => { console.log(vehicle); });
+    this.bookService.update(book).subscribe(book => { console.log(book); });
   }
-}
 }

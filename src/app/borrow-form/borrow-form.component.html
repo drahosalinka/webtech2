@@ -10,10 +10,10 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="vehicle" class="form-label">Jármű</label>
-                <select class="form-select" id="vehicle" formControlName="vehicle">
-                    @for(vehicle of getFreeVehicles(); track $index) {
-                        <option [ngValue]="{ id: vehicle.id }">{{ vehicle.type }} ({{ vehicle.vehicleId }})</option>
+                <label for="book" class="form-label">Könyv</label>
+                <select class="form-select" id="book" formControlName="book">
+                    @for(book of getFreeBooks(); track $index) {
+                        <option [ngValue]="{ id: book.id }">{{ book.title }} ({{ book.author }})</option>
                     }
                 </select>
             </div>

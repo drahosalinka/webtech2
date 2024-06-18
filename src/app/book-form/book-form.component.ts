@@ -1,47 +1,45 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { VehicleDTO } from '../../../models';
-import { VehicleService } from '../services/vehicle.service';
+import { BookDTO } from '../../../models';
+import { BookService } from '../services/book.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Status } from '../../../server/status.enum';
 
 @Component({
-  selector: 'app-vehicle-form',
+  selector: 'app-book-form',
   standalone: true,
   imports: [ReactiveFormsModule],
-  templateUrl: './vehicle-form.component.html',
-  styleUrl: './vehicle-form.component.css'
+  templateUrl: './book-form.component.html',
+  styleUrl: './book-form.component.css'
 })
-export class VehicleFormComponent implements OnInit {
+export class BookFormComponent implements OnInit {
   formBuilder = inject(FormBuilder);
 
-  vehicleService = inject(VehicleService);
+  bookService = inject(BookService);
 
   router = inject(Router);
 
   activedRoute = inject(ActivatedRoute);
 
-  vehicleForm = this.formBuilder.group<VehicleDTO>({
+  bookForm = this.formBuilder.group<BookDTO>({
     id: 0,
-    vehicleId: '',
-    type: '',
-    manufacturer: '',
-    chassisNumber: '',
-    dateOfAcquisition: '',
-    price: 0,
-    km: 0,
+    ISBN: 0,
+    title: '',
+    author: '',
+    publisher: '',
+    yearOfPublishing: 0,
     state: Status.Free,
   });
 
-  isNewVehicle = true;
+  isNewBook = true;
 
   ngOnInit(): void {
     const id = this.activedRoute.snapshot.params['id'];
     
     if (id) {
-      this.isNewVehicle = false;
-      this.vehicleService.getOne(id).subscribe({
-        next: (vehicle) => this.vehicleForm.setValue(vehicle),
+      this.isNewBook = false;
+      this.bookService.getOne(id).subscribe({
+        next: (book) => this.bookForm.setValue(book),
         error: (err) => {
           // TODO: notification
           console.error(err);
@@ -50,14 +48,14 @@ export class VehicleFormComponent implements OnInit {
     }
   }
 
-  saveVehicle() {
-    const vehicle = this.vehicleForm.value as VehicleDTO;
+  saveBook() {
+    const book = this.bookForm.value as BookDTO;
 
-    if (this.isNewVehicle) {
-      this.vehicleService.create(vehicle).subscribe({
+    if (this.isNewBook) {
+      this.bookService.create(book).subscribe({
         next: () => {
           // TODO: notification
-          this.router.navigateByUrl('/vehicle');
+          this.router.navigateByUrl('/book');
         },
         error: (err) => {
           console.error(err);
@@ -65,10 +63,10 @@ export class VehicleFormComponent implements OnInit {
       });
     }
     else {
-      this.vehicleService.update(vehicle).subscribe({
+      this.bookService.update(book).subscribe({
         next: () => {
           // TODO: notification
-          this.router.navigateByUrl('/vehicle');
+          this.router.navigateByUrl('/book');
         },
         error: (err) => {
           console.error(err);

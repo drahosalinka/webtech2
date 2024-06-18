@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
-import { BorrowVehicle } from "./BorrowVehicle";
+import { BorrowBook } from "./BorrowBook";
 
 @Entity()
 export class Customer {
@@ -21,6 +21,6 @@ export class Customer {
     @Column()
     libraryCard: string;
 
-    @OneToMany(type => BorrowVehicle, borrow => borrow.customer)
-    borrowedVehicles: BorrowVehicle[];
+    @OneToMany(type => BorrowBook, borrow => borrow.customer)
+    borrowedBooks: BorrowBook[];
 }

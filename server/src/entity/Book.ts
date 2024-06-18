@@ -1,34 +1,31 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
 import { Status } from "../../status.enum";
-import { BorrowVehicle } from "./BorrowVehicle";
+import { BorrowBook } from "./BorrowBook";
 import { BorrowController } from "../controller/borrow.controller";
 
 
 @Entity()
-export class Vehicle {
+export class Book {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    vehicleId: string;
+    bookId: string;
 
     @Column()
-    type: string;
+    ISBN: number;
 
     @Column()
-    manufacturer: string;
+    title: string;
 
     @Column()
-    chassisNumber: string;
+    author: string;
 
     @Column()
-    dateOfAcquisition: string;
+    publisher: string;
 
     @Column()
-    price: number;
-
-    @Column()
-    km: number;
+    yearOfPublishing: number;
 
     @Column({
         type: 'enum',
@@ -37,6 +34,6 @@ export class Vehicle {
     })
     state: Status;
 
-    @OneToMany(type => BorrowVehicle, borrow => borrow.vehicle)
-    borrowedBy: BorrowVehicle[];
+    @OneToMany(type => BorrowBook, borrow => borrow.book)
+    borrowedBy: BorrowBook[];
 }

@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerFormComponent } from './customer-form/customer-form.component';
-import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
-import { VehicleFormComponent } from './vehicle-form/vehicle-form.component';
+import { BookListComponent } from './book-list/book-list.component';
+import { BookFormComponent } from './book-form/book-form.component';
 import { BorrowFormComponent } from './borrow-form/borrow-form.component';
 import { ReturnComponent } from './return/return.component';
 
@@ -20,16 +20,16 @@ export const routes: Routes = [
         component: CustomerFormComponent
     },
     {
-        path: 'vehicle',
-        component: VehicleListComponent
+        path: 'book',
+        component: BookListComponent
     },
     {
-        path: 'add-vehicle',
-        component: VehicleFormComponent
+        path: 'add-book',
+        component: BookFormComponent
     },
     {
-        path: 'edit-vehicle/:id',
-        component: VehicleFormComponent
+        path: 'edit-book/:id',
+        component: BookFormComponent
     },
     {
         path: 'borrow',

@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-6">
+        <form [formGroup]="bookForm">
+            <div class="mb-3">
+                <label for="ISBN" class="form-label">ISBN szám</label>
+                <input type="text" class="form-control" id="ISBN" formControlName="ISBN">
+            </div>
+            <div class="mb-3">
+                <label for="title" class="form-label">Cím</label>
+                <input type="text" class="form-control" id="title" formControlName="title">
+            </div>
+            <div class="mb-3">
+                <label for="author" class="form-label">Író</label>
+                <input type="text" class="form-control" id="author" formControlName="author">
+            </div>
+            <div class="mb-3">
+                <label for="publisher" class="form-label">Kiadó</label>
+                <input type="text" class="form-control" id="publisher" formControlName="publisher">
+            </div>
+            <div class="mb-3">
+                <label for="yearOfPublishing" class="form-label">Kiadás dátuma</label>
+                <input type="text" class="form-control" id="yearOfPublishing" formControlName="yearOfPublishing">
+            </div>
+            <div class="mb-3">
+                <label for="state" class="form-label">Státusz</label>
+                <select class="form-select" id="state" formControlName="state">
+                    <option value='szabad'>Szabad</option>
+                    <option value='kikölcsönözve'>Kikölcsönözve</option>
+                    <option value='selejtezett'>Selejtezve</option>
+                </select>
+            </div>
+        </form>
+        <div class="text-end">
+            <button class="btn btn-outline-primary" (click)="saveBook()">Mentés</button>
+        </div>
+    </div>
+</div>

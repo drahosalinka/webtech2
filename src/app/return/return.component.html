@@ -4,7 +4,7 @@
             <th>Kód</th>
             <th>Kölcsönzés Ideje</th>
             <th>Kölcsönző neve</th>
-            <th>Kölcsönzött jármű</th>
+            <th>Kölcsönzött könyv</th>
             <th>Kölcsönzés időtartama</th>
         </tr>
     </thead>
@@ -14,7 +14,7 @@
                 <td>{{ borrow.id }}</td>
                 <td>{{ borrow.timestamp }}</td>
                 <td>{{ borrow.customer?.name }}</td>
-                <td>{{ borrow.vehicle?.vehicleId }}</td>
+                <td>{{ borrow.book?.ISBN }}</td>
                 <td>{{ borrow.days }}</td>
                 <td>
                     <button class="btn btn-outline-primary"

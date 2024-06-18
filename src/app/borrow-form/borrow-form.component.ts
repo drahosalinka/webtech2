@@ -1,9 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { BorrowService } from '../services/borrow.service';
-import { BorrowVehicleDTO, CustomerDTO, VehicleDTO } from '../../../models';
+import { BorrowBookDTO, CustomerDTO, BookDTO } from '../../../models';
 import { CustomerService } from '../services/customer.service';
-import { VehicleService } from '../services/vehicle.service';
+import { BookService } from '../services/book.service';
 import { Status } from '../../../server/status.enum';
 import { Router } from '@angular/router';
 
@@ -20,30 +20,30 @@ export class BorrowFormComponent implements OnInit {
   router = inject(Router);
 
   customerService = inject(CustomerService);
-  vehicleService = inject(VehicleService);
+  bookService = inject(BookService);
 
   formBuilder = inject(FormBuilder);
 
   customers: CustomerDTO[] = [];
-  vehicles: VehicleDTO[] = [];
+  books: BookDTO[] = [];
 
-  borrowForm = this.formBuilder.group<BorrowVehicleDTO>({
+  borrowForm = this.formBuilder.group<BorrowBookDTO>({
     id: 0,
     timestamp: '',
     customer: null,
-    vehicle: null,
+    book: null,
     days: 0
   });
 
   ngOnInit(): void {
     this.customerService.getAll().subscribe((customers) => this.customers = customers);
-    this.vehicleService.getAll().subscribe((vehicles) => this.vehicles = vehicles);
+    this.bookService.getAll().subscribe((books) => this.books = books);
   }
 
   createBorrow() {
-    const borrow = this.borrowForm.value as BorrowVehicleDTO;
-    const vehicle = borrow.vehicle as VehicleDTO;
-    vehicle.state = Status.InUse;
+    const borrow = this.borrowForm.value as BorrowBookDTO;
+    const book = borrow.book as BookDTO;
+    book.state = Status.InUse;
 
     this.borrowService.create(borrow).subscribe({
       next: () => {
@@ -53,10 +53,10 @@ export class BorrowFormComponent implements OnInit {
       error: (err) => {
         console.error(err);
       }});
-    this.vehicleService.update(vehicle).subscribe(vehicle => { console.log(vehicle); });
+    this.bookService.update(book).subscribe(book => { console.log(book); });
   }
 
-  getFreeVehicles(): any[] {
-    return this.vehicles.filter(vehicle => vehicle.state === 'szabad');
+  getFreeBooks(): any[] {
+    return this.books.filter(book => book.state === 'szabad');
   }
 }

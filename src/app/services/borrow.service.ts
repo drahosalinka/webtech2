@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { BorrowVehicleDTO } from '../../../models';
+import { BorrowBookDTO } from '../../../models';
 
 @Injectable({
   providedIn: 'root'
@@ -10,27 +10,27 @@ export class BorrowService {
   http = inject(HttpClient);
 
   getAll() {
-    return this.http.get<BorrowVehicleDTO[]>('/api/return');
+    return this.http.get<BorrowBookDTO[]>('/api/return');
   }
 
   getOne(id: number) {
-    return this.http.get<BorrowVehicleDTO>('/api/return/' + id);    
+    return this.http.get<BorrowBookDTO>('/api/return/' + id);    
   }
 
-  create(borrow: BorrowVehicleDTO) {
-    return this.http.post<BorrowVehicleDTO>('/api/return', borrow);
+  create(borrow: BorrowBookDTO) {
+    return this.http.post<BorrowBookDTO>('/api/return', borrow);
   }
 
   borrowsByCustomer(customerId: number) {
-    return this.http.get<BorrowVehicleDTO[]>('/api/return/borrowed-by/' + customerId);
+    return this.http.get<BorrowBookDTO[]>('/api/return/borrowed-by/' + customerId);
   }
 
-  borrowsByVehicle(vehicleId: number) {
-    return this.http.get<BorrowVehicleDTO[]>('/api/return/vehicle/' + vehicleId);
+  borrowsByBook(ISBN: number) {
+    return this.http.get<BorrowBookDTO[]>('/api/return/book/' + ISBN);
   }
 
-  update(borrow: BorrowVehicleDTO) {
-    return this.http.put<BorrowVehicleDTO>('/api/return', borrow);
+  update(borrow: BorrowBookDTO) {
+    return this.http.put<BorrowBookDTO>('/api/return', borrow);
   }
 
   delete(id: number) {

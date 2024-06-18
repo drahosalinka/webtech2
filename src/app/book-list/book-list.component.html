@@ -1,0 +1,30 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ISBN</th>
+            <th>Cím</th>
+            <th>Író</th>
+            <th>Kiadó</th>
+            <th>Kiadás Dátuma</th>
+            <th>Státusz</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(book of books; track $index) {
+            <tr>
+                <td>{{ book.ISBN }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.publisher }}</td>
+                <td>{{ book.yearOfPublishing }}</td>
+                <td>{{ book.state }}</td>
+                <td>
+                    <button class="btn btn-outline-primary"
+                        (click)="goToBookForm(book.id)">Módosítás</button>
+                    <button class="btn btn-outline-danger"
+                        (click)="deleteBook(book)">Törlés</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

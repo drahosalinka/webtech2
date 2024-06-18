@@ -1,13 +1,13 @@
 import express from 'express';
 import { CustomerController } from './controller/customer.controller';
-import { VehicleController } from './controller/vehicle.controller';
+import { BookController } from './controller/book.controller';
 import { BorrowController } from './controller/borrow.controller';
 
 export function getRouter() {
     const router = express.Router();
 
     const customerController = new CustomerController();
-    const vehicleController = new VehicleController();
+    const bookController = new BookController();
     const borrowController = new BorrowController();
 
     router.get('/customer', customerController.getAll);
@@ -16,21 +16,21 @@ export function getRouter() {
     router.put('/customer', customerController.update);
     router.delete('/customer/:id', customerController.delete);
 
-    router.get('/vehicle', vehicleController.getAll);
-    router.get('/vehicle/:id', vehicleController.getOne);
-    router.post('/vehicle', vehicleController.create);
-    router.put('/vehicle', vehicleController.update);
-    router.delete('/vehicle/:id', vehicleController.delete);
+    router.get('/book', bookController.getAll);
+    router.get('/book/:id', bookController.getOne);
+    router.post('/book', bookController.create);
+    router.put('/book', bookController.update);
+    router.delete('/book/:id', bookController.delete);
 
     router.post('/borrow', borrowController.create);
     router.get('/borrow/:customerId', borrowController.borrowsByCustomer);
-    router.get('/borrow/:vehicleId', borrowController.borrowsByVehicle);
+    router.get('/borrow/:bookId', borrowController.borrowsByBook);
 
     router.get('/return', borrowController.getAll);
     router.get('/return/:id', borrowController.getOne);
     router.post('/return', borrowController.create);
     router.get('/return/:customerId', borrowController.borrowsByCustomer);
-    router.get('/return/:vehicleId', borrowController.borrowsByVehicle);
+    router.get('/return/:bookId', borrowController.borrowsByBook);
     router.delete('/return/:id', borrowController.delete);
     router.put('/return', borrowController.update);
     

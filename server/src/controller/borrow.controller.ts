@@ -1,9 +1,9 @@
 import { AppDataSource } from "../data-source";
-import { BorrowVehicle } from "../entity/BorrowVehicle";
+import { BorrowBook } from "../entity/BorrowBook";
 import { Controller } from "./base.controller";
 
 export class BorrowController extends Controller {
-    repository = AppDataSource.getRepository(BorrowVehicle);
+    repository = AppDataSource.getRepository(BorrowBook);
 
     create = async (req, res) => {
         try {
@@ -40,12 +40,12 @@ export class BorrowController extends Controller {
         }
     }
 
-    borrowsByVehicle = async (req, res) => {
+    borrowsByBook = async (req, res) => {
         try {
-            const vehicleId = req.params.vehicleId;
+            const bookId = req.params.bookId;
 
             const borrows = await this.repository.findBy({
-                vehicle: { id: vehicleId } 
+                book: { id: bookId } 
             });
 
             res.json(borrows);

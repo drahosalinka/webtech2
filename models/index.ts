@@ -9,22 +9,20 @@ export interface CustomerDTO {
     libraryCard: string;
 }
 
-export interface VehicleDTO {
+export interface BookDTO {
     id: number;
-    vehicleId: string;
-    type: string;
-    manufacturer: string;
-    chassisNumber: string;
-    dateOfAcquisition: string;
-    price: number;
-    km: number;
+    ISBN: number;
+    title: string;
+    author: string;
+    publisher: string;
+    yearOfPublishing: number;
     state: Status;
 }
 
-export interface BorrowVehicleDTO {
+export interface BorrowBookDTO {
     id: number;
     timestamp: string;
     customer: null | CustomerDTO;
-    vehicle: null | VehicleDTO;
+    book: null | BookDTO;
     days: number;
 }
