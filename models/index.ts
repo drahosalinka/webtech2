@@ -11,7 +11,7 @@ export interface CustomerDTO {
 
 export interface BookDTO {
     id: number;
-    ISBN: number;
+    ISBN: string;
     title: string;
     author: string;
     publisher: string;

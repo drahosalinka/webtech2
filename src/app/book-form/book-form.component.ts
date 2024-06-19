@@ -23,7 +23,7 @@ export class BookFormComponent implements OnInit {
 
   bookForm = this.formBuilder.group<BookDTO>({
     id: 0,
-    ISBN: 0,
+    ISBN: '',
     title: '',
     author: '',
     publisher: '',
