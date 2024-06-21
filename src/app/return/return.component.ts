@@ -4,6 +4,7 @@ import { BorrowBookDTO, BookDTO } from '../../../models';
 import { Router } from '@angular/router';
 import { Status } from '../../../server/status.enum';
 import {BookService } from '../services/book.service';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-return',
@@ -22,6 +23,11 @@ export class ReturnComponent implements OnInit {
   borrows: BorrowBookDTO[] = [];
   
   ngOnInit(): void {
+    console.log(AppComponent.isLoggedIn);
+    if(!AppComponent.isLoggedIn) {
+      this.router.navigateByUrl('/login');
+      alert(`Jelentkezz be!`);
+    }
     this.borrowService.getAll().subscribe({
       next: borrows => this.borrows = borrows,
       error: err => console.error(err)

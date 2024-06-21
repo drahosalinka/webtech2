@@ -5,6 +5,7 @@ import { BookListComponent } from './book-list/book-list.component';
 import { BookFormComponent } from './book-form/book-form.component';
 import { BorrowFormComponent } from './borrow-form/borrow-form.component';
 import { ReturnComponent } from './return/return.component';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
     {
@@ -39,4 +40,8 @@ export const routes: Routes = [
         path: 'return',
         component: ReturnComponent
     },
+    {
+        path: 'login',
+        component: LoginComponent
+    }
 ];

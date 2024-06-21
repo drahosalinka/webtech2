@@ -2,6 +2,7 @@ import express from 'express';
 import { CustomerController } from './controller/customer.controller';
 import { BookController } from './controller/book.controller';
 import { BorrowController } from './controller/borrow.controller';
+import { LoginController } from './controller/login.controller';
 
 export function getRouter() {
     const router = express.Router();
@@ -9,6 +10,7 @@ export function getRouter() {
     const customerController = new CustomerController();
     const bookController = new BookController();
     const borrowController = new BorrowController();
+    const loginController = new LoginController();
 
     router.get('/customer', customerController.getAll);
     router.get('/customer/:id', customerController.getOne);
@@ -34,5 +36,12 @@ export function getRouter() {
     router.delete('/return/:id', borrowController.delete);
     router.put('/return', borrowController.update);
     
+    router.get('/login', loginController.getAll);
+    router.get('/login/:userName', loginController.getOne);
+    router.post('/login', loginController.create);
+    router.put('/login', loginController.update);
+    router.delete('/login/:userName', loginController.delete);
+
+
     return router;
 }

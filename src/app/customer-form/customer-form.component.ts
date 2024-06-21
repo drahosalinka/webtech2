@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { CustomerDTO } from '../../../models';
 import { CustomerService } from '../services/customer.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-customer-form',
@@ -32,6 +33,10 @@ export class CustomerFormComponent implements OnInit {
   isNewCustomer = true;
 
   ngOnInit(): void {
+    if(!AppComponent.isLoggedIn) {
+      this.router.navigateByUrl('/login');
+      alert(`Jelentkezz be!`);
+    }
     const id = this.activedRoute.snapshot.params['id'];
 
     if (id) {

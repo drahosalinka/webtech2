@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { BookService } from '../services/book.service';
 import { BookDTO } from '../../../models';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-book-list',
@@ -18,6 +19,10 @@ export class BookListComponent implements OnInit {
   books: BookDTO[] = [];
 
   ngOnInit(): void {
+    if(!AppComponent.isLoggedIn) {
+      this.router.navigateByUrl('/login');
+      alert(`Jelentkezz be!`);
+    }
     this.bookService.getAll().subscribe({
       next: books => this.books = books,
       error: err => console.error(err)

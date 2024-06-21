@@ -13,8 +13,8 @@ export class LoginService {
     return this.http.get<UserDTO[]>('/api/login');    
   }
 
-  getOne(id: number) {
-    return this.http.get<UserDTO>('/api/login/' + id);    
+  getOne(userName: string) {
+    return this.http.get<UserDTO>('/api/login/' + userName);    
   }
 
   create(user: UserDTO) {
@@ -25,7 +25,7 @@ export class LoginService {
     return this.http.put<UserDTO>('/api/login', user);
   }
 
-  delete(id: number) {
-    return this.http.delete('/api/login/' + id); 
+  delete(userName: string) {
+    return this.http.delete('/api/login/' + userName); 
   }
 }

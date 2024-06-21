@@ -4,6 +4,7 @@ import { BookDTO } from '../../../models';
 import { BookService } from '../services/book.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Status } from '../../../server/status.enum';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-book-form',
@@ -34,6 +35,10 @@ export class BookFormComponent implements OnInit {
   isNewBook = true;
 
   ngOnInit(): void {
+    if(!AppComponent.isLoggedIn) {
+      this.router.navigateByUrl('/login');
+      alert(`Jelentkezz be!`);
+    }
     const id = this.activedRoute.snapshot.params['id'];
     
     if (id) {

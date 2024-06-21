@@ -6,6 +6,7 @@ import { CustomerService } from '../services/customer.service';
 import { BookService } from '../services/book.service';
 import { Status } from '../../../server/status.enum';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-borrow-form',
@@ -36,6 +37,10 @@ export class BorrowFormComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    if(!AppComponent.isLoggedIn) {
+      this.router.navigateByUrl('/login');
+      alert(`Jelentkezz be!`);
+    }
     this.customerService.getAll().subscribe((customers) => this.customers = customers);
     this.bookService.getAll().subscribe((books) => this.books = books);
   }
