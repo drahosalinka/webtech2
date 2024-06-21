@@ -26,3 +26,9 @@ export interface BorrowBookDTO {
     book: null | BookDTO;
     days: number;
 }
+
+export interface LoginDTO {
+    id: number;
+    userName: string;
+    password: string;
+}

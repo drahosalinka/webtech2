@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-md-6">
+        <form [formGroup]="login">
+            <div class="mb-3">
+                <label for="userName" class="form-label">Felhasználónév</label>
+                <input type="text" class="form-control" id="userName" formControlName="userName">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Jelszó</label>
+                <input type="text" class="form-control" id="password" formControlName="password">
+            </div>
+        </form>
+        <div class="text-end">
+            <button class="btn btn-outline-primary" (click)="login()">Bejelentkezés</button>
+        </div>
+    </div>
+</div>
